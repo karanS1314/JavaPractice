@@ -46,12 +46,12 @@ public class XOR {
 				}
 			}
 			
-			int c1=str/2;
-			int c2=str/2-1;
+			long c1=str/2;
+			long c2=str/2-1;
 			
 			
-			int d1=c1^n;
-			int d2=c2^n;
+			long d1=c1^n;
+			long d2=c2^n;
 			
 			System.out.println(Math.max(d1*c1, d2*c2));
 //			int mx=0;
