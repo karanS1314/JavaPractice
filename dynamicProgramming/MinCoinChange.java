@@ -19,9 +19,9 @@ public class MinCoinChange {
 				else {
 					subAns= minCoins(coins,m,n-coins[i],dp);
 				}
-			if(subAns!=Integer.MAX_VALUE && subAns+1<ans) {
-			ans= subAns+1;
-			}
+				if(subAns!=Integer.MAX_VALUE && subAns+1<ans) {
+					ans= subAns+1;
+				}
 			}
 		}
 		return dp[n]=ans;
