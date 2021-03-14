@@ -1,5 +1,6 @@
 package codeChef;
 
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class MagicalCandyStore {
@@ -20,6 +21,8 @@ public class MagicalCandyStore {
 			while(q-->0) {
 				long r=0;
 				if(sc.hasNext())r= sc.nextLong();
+				HashMap<Integer, Integer> map = new HashMap<>();
+
 
 				int str =-1;
 				for(int i=0;i<n;i++) {

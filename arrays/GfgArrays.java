@@ -1,5 +1,6 @@
 package arrays;
 
+import java.util.LinkedList;
 import java.util.Scanner;
 
 public class GfgArrays {
@@ -7,7 +8,7 @@ public class GfgArrays {
 
 	public static void main(String[] args) {
 		Scanner sc=new Scanner(System.in);
-		
+		// LinkedList<Integer> ll = new LinkedList<>();
 		
 		
 		int n=sc.nextInt();
