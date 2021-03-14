@@ -27,7 +27,8 @@ public class Anagram {
 		if(!isAnagram) {
 			break;
 		}
-	}	}
+	}
+	}
 		if(isAnagram) {
 			System.out.println("isAnagram"); 
 		}else {

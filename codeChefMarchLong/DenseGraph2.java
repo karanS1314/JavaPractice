@@ -1,99 +1,84 @@
-package codeChefMarchLong;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
  
 
-public class CollegeLife4 {
+public class DenseGraph2 {
+
+    static final int infi = 1000000000;
+ 
+// Class of the node
+    class Pair
+    {
+        int first, second;
+    
+        public Pair(int first, int second) 
+        {
+            this.first = first;
+            this.second = second;
+        }
+    }
+    static class Node 
+    {   
+
+        int vertexNumber;
+    
+        // Adjacency list that shows the
+        // vertexNumber of child vertex
+        // and the weight of the edge
+        List<Pair> children;
+    
+        Node(int vertexNumber)
+        {
+            this.vertexNumber = vertexNumber;
+            children = new ArrayList<>();
+        }
+    
+        // Function to add the child for
+        // the given node
+        void add_child(int vNumber, int length)
+        {
+            Pair p = new Pair(vNumber, length);
+            children.add(p);
+        }
+    }
     //Good morning!
-	static long res(long n , long e ,long h ,long a , long b , long c){
-		if(n<=0) return 0;
-
-		long ans = ll;
-
-		if((n<=e) &&(n<=h)){
-			ans = minv(ans , n*c);
-		}
-		if(3*n <=h){
-			ans = minv(ans , n*b);
-		}
-		if(2*n <=e){
-			ans = minv(ans , n*a);
-		}
-		if(((h-n)/2>=1) && ((h-n)/2 >=n-e)){
-			if(b-c<0){
-				long temp = minv(n-1,(h-n)/2);
-				ans = minv(ans, (b-c)*temp +n*c);
-			}
-			else{
-				long temp = maxv(1,n-e);
-				ans = minv(ans , (b-c)*temp + n*c);
-			}
-		}
-		if((e-n)>=1 && (e-n)>=n-h){
-			if(a-c<0){
-				long temp = minv(n-1,e-n);
-				ans = minv(ans , (a-c)*temp + n*c);
-			}
-			else{
-				long temp = maxv(1, n-h);
-				ans = minv(ans,(a-c)*temp+n*c);
-			}
-		}
-		if((e/2>=1) && (e/2 >=(3*n - h + 2)/3)){
-			if(a-b<0){
-				long temp = minv(n-1,e/2);
-				ans = minv(ans , (a-b)*temp + n*b);
-			}
-			else{
-				long temp = maxv(1, (3*n - h + 2)/3);
-				ans = minv(ans , (a-b)*temp + n*b);
-			}
-		}
-
-		if((e>=3) && (h>=4) && (n>=3)){
-			ans = minv(ans , a+b+c + res(n-3,e-3,h-4,a,b,c));
-		}
-		return ans;
-
-	}
-	static long maxv(long a , long b){
-		if(a>b) return a ;
-		return b;
-	}
-	static long minv(long a , long b){
-		if(a<b) return a;
-		return b;
-	}
-
-	
 	public static void main(String[] args) {
-		try{
-			FastScanner sc = new FastScanner();
-			long t = sc.nextLong();
-			while(t-->0){
-				long n = sc.nextLong();
-				long e = sc.nextLong();
-				long h = sc.nextLong();
-				long a = sc.nextLong();
-				long b = sc.nextLong();
-				long c = sc.nextLong();
-				long ans;
-				ans = res(n , e , h , a , b , c);
-
-				if(ans == ll){
-					System.out.println(-1);
+		FastScanner sc = new FastScanner();
+        int t = sc.nextInt();
+			while(t-->0) {
+				int n = sc.nextInt();
+				int m = sc.nextInt();
+				int src = sc.nextInt();
+				int dest = sc.nextInt();
+				
+				
+				if(src==dest) {
+					System.out.println(0);
 				}
-				else{
-					System.out.println(ans);
-				}
-			}
-		} catch(Exception e){
-			return;
-		}
+				else {
+					ArrayList<Edge> graph[] = new ArrayList[(int) (n+1)];
+					for(int i=1; i<=n ;i++) {
+						graph[i] = new ArrayList<>();
+					}
+					
+					for(int i=0;i<m;i++) {
+						int a = sc.nextInt();
+						int b = sc.nextInt();
+						int c = sc.nextInt();
+						int d = sc.nextInt();
+					
+						for(int u=a; u<=b ; u++) {
+							for(int v=c ; v<=d ; v++) {
+								graph[u].add( new Edge(u , v));
+								//directed graph
+							}
+						}
+					}
 	}
+
+
 
 
 
@@ -209,8 +194,6 @@ public class CollegeLife4 {
         }
     }
 	static final int mod=100000000 + 7;
-	static final String sl = "1000000000000000";
-	static final long ll = Long.parseLong(sl);
 	//fastPow
 	static long fastPow(long base, long exp) {
 		if (exp==0) return 1;
@@ -222,6 +205,14 @@ public class CollegeLife4 {
 	//multiply two long numbers
 	static long mul(long a, long b) {
 		return a*b%mod;
+	}
+
+	//swap in any kind of generic array
+	static <E> void swap(int i  , int j , E []a){
+		E x = a[i];
+		E y = a[j];
+		a[i]=x;
+		a[j]=y;
 	}
 
 	// write 

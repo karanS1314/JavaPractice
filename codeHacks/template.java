@@ -9,7 +9,7 @@ public class template {
     //Good morning!
 	public static void main(String[] args) {
 		FastScanner sc = new FastScanner();
-		
+
 	}
 
 
@@ -139,6 +139,14 @@ public class template {
 	//multiply two long numbers
 	static long mul(long a, long b) {
 		return a*b%mod;
+	}
+
+	//swap in any kind of generic array
+	static <E> void swap(int i  , int j , E []a){
+		E x = a[i];
+		E y = a[j];
+		a[i]=x;
+		a[j]=y;
 	}
 
 	// write 

@@ -5,13 +5,13 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
 
 public class DenseGraph {
+	
 	static class Edge{
 		int src;
 		int nbr;
@@ -33,6 +33,9 @@ public class DenseGraph {
 					e.printStackTrace();
 				}
 			return st.nextToken();
+		}
+		long nextlong() {
+			return Long.parseLong(next());
 		}
 		int nextInt() {
 			return Integer.parseInt(next());
@@ -63,7 +66,7 @@ public class DenseGraph {
 		vis[s]= true;
 		for(int i=0;i<graph[s].size();i++) {
 			if(vis[graph[s].get(i).nbr]!=true) {
-			if(hasPath(graph[s].get(i).nbr, d , graph, vis)) return true;
+				if(hasPath(graph[s].get(i).nbr, d , graph, vis)) return true;
 			}
 		}
 		vis[s]=false;
@@ -85,7 +88,7 @@ public class DenseGraph {
 					System.out.println(0);
 				}
 				else {
-					ArrayList<Edge> graph[] = new ArrayList[n+1];
+					ArrayList<Edge> graph[] = new ArrayList[(int) (n+1)];
 					for(int i=1; i<=n ;i++) {
 						graph[i] = new ArrayList<>();
 					}
@@ -99,13 +102,13 @@ public class DenseGraph {
 						for(int u=a; u<=b ; u++) {
 							for(int v=c ; v<=d ; v++) {
 								graph[u].add( new Edge(u , v));
+								//directed graph
 							}
 						}
 					}
 					// till now a graph is ready which contains array of arraylists of edges
 					
 					boolean visf[] = new boolean [n+1];
-					Arrays.fill(visf ,  false);
 					if(!hasPath(src , dest , graph, visf)) {
 						System.out.println(-1);
 					}
