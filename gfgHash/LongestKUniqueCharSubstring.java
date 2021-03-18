@@ -2,6 +2,7 @@ package gfgHash;
 
 
 import java.util.Map.Entry;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class LongestKUniqueCharSubstring {

@@ -1,41 +1,68 @@
-package codeForces.codeforces708;
+package codeForces.codeforces_edu106;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
  
 
-public class D {
+public class C {
     //Good morning!
 	public static void main(String[] args) {
 		FastScanner sc = new FastScanner();
         int t = sc.nextInt();
-		while(t-->0){
-			int n = sc.nextInt();
-			int m = sc.nextInt();
+        while(t-->0){
+            int n = sc.nextInt();
+            int c[] = sc.readArray(n);
 
-			int a[] = sc.readArray(n);
+            ArrayList<Integer> al1 = new ArrayList<>(); 
+            ArrayList<Integer> al2 = new ArrayList<>(); 
+            int max1 =Integer.MIN_VALUE;
+            int max2 =Integer.MIN_VALUE;
+            for(int i=0;i<n;i+=2){
+                    if(c[i]>max1 && i==0){
+                        max1=c[i];
+                    }
+                    else if(c[i]>=max1){
+                        break;
+                    }
+                    al1.add(c[i]);
+            }
+            for(int i=1;i<n;i+=2){
+                if(c[i]>max2 && i==1){
+                    max2=c[i];
+                }
+                else if(c[i]>=max2){
+                    break;
+                }
+                al2.add(c[i]);
 
-            int temp [] = new int[m];
-            for(int i=0;i<n;i++){
-                temp[a[i]%m]++;
             }
 
-            int ans=0;
-            for(int i=1;i<=m/2;i++){
-
-               int x=Math.abs(temp[i]-temp[m-i]);
-               if(x==0 && temp[i]>0){
-                	ans+=1; 
-               }
-               else {
-                   ans+=x;
-               }
+            Collections.sort(al1);
+            Collections.sort(al2);
+            
+            int x = n - al1.size()+1;
+            long ans1=0;
+            if(al1.size()>0){
+                ans1+=al1.get(0)*x;
             }
-            if(temp[0]>0) ans ++;
+            for(int i=1;i<al1.size();i++){
+                ans1+=al1.get(i);
+            }
+
+            int y = n - al2.size()+1;
+            long ans2=0;
+            if(al2.size()>0){
+                ans2+=al2.get(0)*y;
+            }
+            for(int i=1;i<al2.size();i++){
+                ans2+=al2.get(i);
+            }
+            long ans = ans1 + ans2;
             System.out.println(ans);
-        }
 
+        }
 
 	}
 

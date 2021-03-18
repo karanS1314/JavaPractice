@@ -15,23 +15,18 @@ public class C {
         int t = sc.nextInt();
         while(t-->0){
             int n = sc.nextInt();
-            int o = sc.nextInt();
+            int k = sc.nextInt();
 
-            boolean found = false;
-            for(int i=n/2;i>0 && !found;i--){
-                for(int j=1;j<=i && !found;j++){
-                    for(int k=1;k<=j;k++){
-                        int one = i*j/gcd(i, j);
-                        long two = one*k/gcd(one, k);
-
-                        if((i+j+k)==n && two <=n/2 ){
-                            found =true;
-                            System.out.println( i + " " + j + " "+ k);
-                            break;
-                        } 
-                    }
-                }
-            }
+           if(n%4 ==0){
+			   System.out.println(n/2 + " " + n/4 + " " + n/4);
+		   }
+		   else if(n%2 ==0){
+				System.out.println(2 + " " + (n-2)/2 + " " + (n-2)/2);
+		   }
+		   else {
+			   int x = n/2;
+			System.out.println(1 + " " + x + " " + x);
+		   }
       }
 
 	}

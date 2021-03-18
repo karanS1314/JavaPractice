@@ -1,41 +1,73 @@
-package codeForces.codeforces708;
+package codeForces.codeforces_edu106;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
  
 
-public class D {
+public class B {
     //Good morning!
 	public static void main(String[] args) {
 		FastScanner sc = new FastScanner();
-        int t = sc.nextInt();
-		while(t-->0){
-			int n = sc.nextInt();
-			int m = sc.nextInt();
+        int t =sc.nextInt();
+        // sc.nextLine();
+        while(t-->0){
+            boolean f=false;
+            StringBuffer s = new StringBuffer(sc.nextLine());
 
-			int a[] = sc.readArray(n);
+            int n = s.length();
+            // int v[] = new int[n];
+            // int p=0;
+            // for(int i=2;i<s.length();i++){
+            //     if(s.charAt(i)<s.charAt(i-1)){
+            //         if(v[i]==1){
+            //             p=1;
+            //             break;
+            //         } 
+            //         else{
+            //             v[i]=1;
+            //             s.deleteCharAt(i);
+            //             i--;
+            //         }
+            //     }
+            // }
 
-            int temp [] = new int[m];
-            for(int i=0;i<n;i++){
-                temp[a[i]%m]++;
+            // Arrays.fill(v, 0);
+            // int q=0;
+            // for(int i=1;i<s.length()-1;i++){
+            //     if(s.charAt(i)>s.charAt(i+1)){
+            //         if(v[i]==1){
+            //             q=1;
+            //             break;
+            //         }
+            //         else{
+            //             v[i]=1;
+            //             s.deleteCharAt(i);
+            //             i--;
+            //         }
+            //     }
+            // }
+				boolean ans=false;
+            for(int i=0;i<n-1;i++){
+                int j=0;
+                String x ="";
+                while(j<2){
+                    x+=s.charAt(i+j);
+                    j++;
+                }
+                // System.out.println(x);
+                if(x.equals("11")) {
+                    f=true;
+                }
+				if(x.equals("00") && f==true){
+					ans=true;
+					break;
+				}
             }
-
-            int ans=0;
-            for(int i=1;i<=m/2;i++){
-
-               int x=Math.abs(temp[i]-temp[m-i]);
-               if(x==0 && temp[i]>0){
-                	ans+=1; 
-               }
-               else {
-                   ans+=x;
-               }
-            }
-            if(temp[0]>0) ans ++;
-            System.out.println(ans);
+            if(ans) System.out.println("NO");
+            else System.out.println("YES");
         }
-
 
 	}
 

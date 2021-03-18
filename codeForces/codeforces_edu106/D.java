@@ -1,4 +1,5 @@
-package codeForces.codeforces708;
+package codeForces.codeforces_edu106;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -9,33 +10,6 @@ public class D {
     //Good morning!
 	public static void main(String[] args) {
 		FastScanner sc = new FastScanner();
-        int t = sc.nextInt();
-		while(t-->0){
-			int n = sc.nextInt();
-			int m = sc.nextInt();
-
-			int a[] = sc.readArray(n);
-
-            int temp [] = new int[m];
-            for(int i=0;i<n;i++){
-                temp[a[i]%m]++;
-            }
-
-            int ans=0;
-            for(int i=1;i<=m/2;i++){
-
-               int x=Math.abs(temp[i]-temp[m-i]);
-               if(x==0 && temp[i]>0){
-                	ans+=1; 
-               }
-               else {
-                   ans+=x;
-               }
-            }
-            if(temp[0]>0) ans ++;
-            System.out.println(ans);
-        }
-
 
 	}
 
