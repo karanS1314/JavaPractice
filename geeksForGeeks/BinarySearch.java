@@ -6,8 +6,7 @@ public class BinarySearch {
 	
 	static int bin_search(int A[], int left, int right,  int k)
 	{
-	
-		
+
 		int mid=left+(right-left)/2;
 		while(left<=right){
 		    if(k==A[mid]){
