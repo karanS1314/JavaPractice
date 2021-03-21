@@ -1,12 +1,11 @@
-package codeForces.Practicer;
-
+package codeForces.codeforces_709;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
  
 
-public class LAIS2 {
+public class B {
     //Good morning!
 	public static void main(String[] args) {
 		FastScanner sc = new FastScanner();
@@ -15,45 +14,40 @@ public class LAIS2 {
             int n = sc.nextInt();
             int a[] = sc.readArray(n);
 
-            int dp[] = new int[n];
+            if(n==1 || n==2) {
+                System.out.println(0);
+                continue;
+            }
+            else{
+                int m =0;
+                int c =0;
+                int x= Integer.MAX_VALUE;
+                boolean f =true;
+                for(int i=1;i<n-1;i++){
+    
+                    if(a[i]-a[i-1]!=a[i+1]-a[i]){
+                        f=false;
+                        x=Math.min(x , Math.abs(2*a[i]-a[i-1] - a[i+1]));
+                    }
 
-            dp[0] = 1;
 
-            int temp[] = new int[n];
-            temp[0]=-1;
-
-            for(int i=1;i<n;i++){
-                for(int j=0;j<i;j++){       
-                    if(Math.min(a[i], a[j])>=Math.min(a[j], temp[j])){// if current is bigger or equal to jiske peeche lgna hai
-
-                        // tb to koi dikkat ni simple find krlo konsa max dera hai
-                        if(dp[j]+1>dp[i]){
-                            dp[i]=dp[j]+1;
-                            temp[i]=a[j];
-                        }
-
-                        // aur agar do num ke peeche lgne se same max aara hai
-                        // to kam vale k peeche lgo
-                        else if(dp[j]+1==dp[i] && a[j]<temp[i]){
-                            temp[i]=a[j];
+                }
+                
+                m=x;
+                if(!f && a[0]<m){
+                    for(int i=1;i<n;i++){
+                        if(a[i]-a[i-1]<m && a[i]-a[i-1]>=0){
+                            c=a[i]-a[i-1];
+                            break;
                         }
                     }
+                    System.out.println(m + " " + c);
+                }
+            
+                else{
+                    System.out.println(-1);
                 }
             }
-			// for(int e : dp){
-			// 	System.out.print(e + " ");
-			// }
-			// System.out.println();
-
-			// for(int e : temp){
-			// 	System.out.print(e+ " ");
-			// }
-			// System.out.println();
-            int max = 2;
-            for(int i=2;i<n;i++){
-                max = Math.max(max , dp[i]);
-            }
-            System.out.println(max);
         }
 	}
 

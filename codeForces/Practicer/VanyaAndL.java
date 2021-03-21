@@ -6,55 +6,44 @@ import java.io.InputStreamReader;
 import java.util.*;
  
 
-public class LAIS2 {
+public class VanyaAndL {
     //Good morning!
 	public static void main(String[] args) {
 		FastScanner sc = new FastScanner();
-        int t = sc.nextInt();
-        while(t-->0){
-            int n = sc.nextInt();
-            int a[] = sc.readArray(n);
+        int n = sc.nextInt();
+        int l = sc.nextInt();
 
-            int dp[] = new int[n];
+        ArrayList<Integer> al = new ArrayList<>();
+        int zero=0;
+        int le = 0;
+        for(int i=0;i<n;i++){
+            int m = sc.nextInt();
+            if(m == 0) zero=1;
+            if(m==l) le=1;
+            al.add(m);
+        }
+        if(le==0) al.add(l);
+        if(zero==0) al.add(0);
 
-            dp[0] = 1;
-
-            int temp[] = new int[n];
-            temp[0]=-1;
-
-            for(int i=1;i<n;i++){
-                for(int j=0;j<i;j++){       
-                    if(Math.min(a[i], a[j])>=Math.min(a[j], temp[j])){// if current is bigger or equal to jiske peeche lgna hai
-
-                        // tb to koi dikkat ni simple find krlo konsa max dera hai
-                        if(dp[j]+1>dp[i]){
-                            dp[i]=dp[j]+1;
-                            temp[i]=a[j];
-                        }
-
-                        // aur agar do num ke peeche lgne se same max aara hai
-                        // to kam vale k peeche lgo
-                        else if(dp[j]+1==dp[i] && a[j]<temp[i]){
-                            temp[i]=a[j];
-                        }
-                    }
+        
+        int mx = 0;
+        double ans =0.000000000;
+        Collections.sort(al);
+        for(int i=1;i<al.size();i++){
+            if(al.get(i)-al.get(i-1)>mx){
+                mx=al.get(i)-al.get(i-1);
+                if(i==1 || i==al.size()-1){
+                    ans=(double)mx;
+                }
+                else{
+                    ans=(double)mx/2;
                 }
             }
-			// for(int e : dp){
-			// 	System.out.print(e + " ");
-			// }
-			// System.out.println();
-
-			// for(int e : temp){
-			// 	System.out.print(e+ " ");
-			// }
-			// System.out.println();
-            int max = 2;
-            for(int i=2;i<n;i++){
-                max = Math.max(max , dp[i]);
-            }
-            System.out.println(max);
         }
+         System.out.println( 
+            String.format("%.9f", ans)); 
+         
+
 	}
 
 
