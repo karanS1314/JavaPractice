@@ -1,16 +1,60 @@
-package codeHacks;
- //   * * * fuck you * * *   //
+package codeForces.Practicer;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
  
 
-public class template {
+public class LongestSimpleCycle {
+    //Good morning!
 	public static void main(String[] args) {
 		FastScanner sc = new FastScanner();
+        int t = sc.nextInt();
+        while(t-->0){
+            int n = sc.nextInt();
+            int c[] = sc.readArray(n);
+            int a[] = sc.readArray(n);
+            int b[] = sc.readArray(n);
 
-	}
+			int ans1 = 0;
+			int ans2 = 0;
+			int mx1 = Integer.MIN_VALUE;
+			int mx2 = Integer.MIN_VALUE;
+
+			for(int i=1;i<n;i++){
+				ans1+=2;
+				ans1+=Math.abs(a[i]-b[i]);
+				ans1+=c[i]-1;
+				mx1=Math.max(mx1 , ans1);
+				ans1=0;
+			}
+
+			for(int i=0;i<n;i++){
+				if(i!=0)
+					ans2+=2;
+				if(i==n-1 || (a[i+1]==b[i+1])){
+					ans2+=c[i]-1;
+					// System.out.println(ans2);
+					mx2=Math.max(mx2 , ans2);
+					ans2=0;
+				}
+				else{
+					if(i==0){
+						ans2+=Math.abs(a[i+1]-b[i+1]);
+					}
+					else{
+						ans2+=c[i]-1-Math.abs(a[i+1]-b[i+1]);
+					}// System.out.println(ans2);
+				}
+			}
+			// System.out.println(mx1+ " " + mx2);
+			System.out.println(Math.max(mx1 , mx2));
+
+            
+
+        }
+	}   
 
 
 
