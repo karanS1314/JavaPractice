@@ -20,9 +20,9 @@ public class NQueens {
 		
 		for(int i=row-1,j=col+1;i>=0 && j<n;i--,j++) {
 			if(j<n && i>=0) {
-			if(a[i][j]==1) {
-				return false;
-			}		
+				if(a[i][j]==1) {
+					return false;
+				}		
 			}
 		}
 		return true;
@@ -42,11 +42,11 @@ public class NQueens {
 		}
 		for(int col=0;col<n;col++) {
 			if(isValid(a, n, row, col)) {
-			a[row][col]=1;
-			al.add(col+1);
-			printQueens(n,a,row+1,al);
-			a[row][col]=0;
-			al.remove(al.size()-1);
+				a[row][col]=1;
+				al.add(col+1);
+				printQueens(n,a,row+1,al);
+				a[row][col]=0;
+				al.remove(al.size()-1);
 			}
 		}
 		return;
