@@ -1,4 +1,4 @@
-package codeChefApril;
+package bitManipulation;
 
 //   * * * fuck you * * *   //
 import java.io.BufferedReader;
@@ -7,53 +7,17 @@ import java.io.InputStreamReader;
 import java.util.*;
  
 
-public class B {
+public class RSB {
 	public static void main(String[] args) {
-		try{
-			FastScanner sc = new FastScanner();
-			int t = sc.nextInt();
-			while(t-->0){
-				int n = sc.nextInt();
-				int m = sc.nextInt();
-				int k = sc.nextInt();
-				double a[][] = new double[n+1][m+1];
-				for(int i=1;i<=n;i++){
-					for(int j=1;j<=m;j++){
-						a[i][j]=sc.nextDouble();
-					}
-				}
-				long res = 0;
-				//single digit matrix handling
-				for(int i=1;i<=n;i++){
-					for(int j=1;j<=m;j++){
-						a[i][j]+=a[i][j-1];
-					}
-				}
+		FastScanner sc = new FastScanner();
+        int n = sc.nextInt();
+        // find the and of n and n''
+        int x = ~n +1 ;
 
-				for(int j=1;j<=m;j++){
-					for(int i=1;i<=n;i++){
-						a[i][j]+=a[i-1][j];
-					}
-				}
-				int min = Math.min(m, n);
+        int rsb = (n&x);
+        System.out.println(rsb);
+        //where rsb is the right most bit set mask
 
-				for(int u=1;u<=min;u++){
-					for(int i=u;i<=n;i++){
-						for(int j=u;j<=m;j++){
-							if((a[i][j]+a[i-u][j-u]-a[i][j-u]-a[i-u][j])/(u*u)>=k){
-								res++;
-							}
-						}
-					}
-				}
-				System.out.println(res);
-
-				
-
-			}
-		}catch(Exception e){
-			return;
-		}
 	}
 
 

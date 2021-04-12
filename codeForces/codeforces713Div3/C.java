@@ -1,4 +1,4 @@
-package codeChefApril;
+package codeForces.codeforces713Div3;
 
 //   * * * fuck you * * *   //
 import java.io.BufferedReader;
@@ -7,52 +7,105 @@ import java.io.InputStreamReader;
 import java.util.*;
  
 
-public class B {
+public class C {
 	public static void main(String[] args) {
-		try{
-			FastScanner sc = new FastScanner();
-			int t = sc.nextInt();
-			while(t-->0){
-				int n = sc.nextInt();
-				int m = sc.nextInt();
-				int k = sc.nextInt();
-				double a[][] = new double[n+1][m+1];
-				for(int i=1;i<=n;i++){
-					for(int j=1;j<=m;j++){
-						a[i][j]=sc.nextDouble();
-					}
-				}
-				long res = 0;
-				//single digit matrix handling
-				for(int i=1;i<=n;i++){
-					for(int j=1;j<=m;j++){
-						a[i][j]+=a[i][j-1];
-					}
-				}
+		FastScanner sc = new FastScanner();
+        int t = sc.nextInt();
+        while(t-->0){
+            int z = sc.nextInt();
+            int o = sc.nextInt();
+            String s = sc.nextLine();
+			char[] ch = s.toCharArray();
+            int n = s.length();
 
-				for(int j=1;j<=m;j++){
-					for(int i=1;i<=n;i++){
-						a[i][j]+=a[i-1][j];
+			boolean p = true;
+
+			for(int i=0;i<n && p == true;i++){
+				if(ch[i]=='0'){
+					if(ch[n-i-1]=='?'){
+						ch[n-i-1]='0';
+					}
+					else if(ch[n-i-1]=='1'){
+						p=false;
+					}		
+				}
+				if(ch[i]=='1'){
+					if(ch[n-i-1]=='?'){
+						ch[n-i-1]='1';
+					}
+					else if(ch[n-i-1]=='0'){
+						p=false;
 					}
 				}
-				int min = Math.min(m, n);
+			}
+			// if(n%2==1){
+			// 	char c = s.charAt(n/2);
+			// 	if(c=='?') continue;
+			// 	else if(c=='1') 
+			// }
+			// System.out.println("*** " + s);
+			if(p!=true){
+				System.out.println(-1);
+				continue;
+			}
 
-				for(int u=1;u<=min;u++){
-					for(int i=u;i<=n;i++){
-						for(int j=u;j<=m;j++){
-							if((a[i][j]+a[i-u][j-u]-a[i][j-u]-a[i-u][j])/(u*u)>=k){
-								res++;
-							}
+			for(int i=0;i<n;i++){
+				char c = ch[i];
+				if(c=='0'){
+					z--;
+				}
+				else if(c=='1'){
+					o--;
+				}
+			}
+			// System.out.println(z+ " "+ o);
+			if(z<0 || o<0){
+				p = false;
+			}
+			else{
+				outer :for(int i=0;i<n/2;i++){
+					char c = ch[i];
+					if(c=='?'){
+						if(ch[n-i-1]!='?'){
+							p=false;
+							break outer;
+						}
+						if(z>o){
+							ch[i]='0';
+							ch[n-i-1]='0';
+							z-=2;
+						}
+						else {
+							ch[i]='1';
+							ch[n-i-1]='1';
+							o-=2;
+						}
+					}
+					// System.out.println(s);
+				}
+				if((n&1)==1){
+					if(s.charAt(n/2)=='?'){
+						int i =n/2;
+						if(z>o){
+							ch[i]='0';
+							z-=1;
+						}
+						else {
+							ch[i]='1';
+							o-=1;
 						}
 					}
 				}
-				System.out.println(res);
-
 				
-
 			}
-		}catch(Exception e){
-			return;
+			// System.out.println(z+ " "+o);
+			if(p==false || z!=0 || o!=0){
+				System.out.println(-1);
+			}
+			else{
+				System.out.println(String.valueOf(ch));
+			}
+
 		}
 	}
 
@@ -196,4 +249,3 @@ public class B {
 	// write 
 
 }
-

@@ -1,59 +1,69 @@
-package codeChefApril;
+package codeForces.Practicer;
 
 //   * * * fuck you * * *   //
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.math.BigInteger;
 import java.util.*;
  
 
-public class B {
+public class upA {
 	public static void main(String[] args) {
-		try{
-			FastScanner sc = new FastScanner();
-			int t = sc.nextInt();
-			while(t-->0){
-				int n = sc.nextInt();
-				int m = sc.nextInt();
-				int k = sc.nextInt();
-				double a[][] = new double[n+1][m+1];
-				for(int i=1;i<=n;i++){
-					for(int j=1;j<=m;j++){
-						a[i][j]=sc.nextDouble();
-					}
-				}
-				long res = 0;
-				//single digit matrix handling
-				for(int i=1;i<=n;i++){
-					for(int j=1;j<=m;j++){
-						a[i][j]+=a[i][j-1];
-					}
-				}
+		FastScanner sc = new FastScanner();
+        int t = sc.nextInt();
+        int tc = 0;
+        while(t-->0){
+            tc++;
+            int n = sc.nextInt();
+            BigInteger a[] = new BigInteger[n];
+            for(int i=0 ; i<n ; i++){
+                long x = sc.nextLong();
+                String s = String.valueOf(x);
+                a[i] = new BigInteger(s);
+            }
+            BigInteger count = new BigInteger("0");
+            for(int i=0 ; i<n-1 ; i++){
+                if(a[i].compareTo(a[i+1])<0) continue;
+                BigInteger l1 = new BigInteger(String.valueOf(a[i].toString().length()));
+                BigInteger l2 = new BigInteger(String.valueOf(a[i+1].toString().length()));
+                BigInteger l = l1.subtract(l2);
+                BigInteger ten = new BigInteger("10");
+                
+                ten = ten.pow(l.intValue());
+                System.out.println(ten+ " " + i);
+                BigInteger x = new BigInteger(String.valueOf(a[i].divide(ten)));
 
-				for(int j=1;j<=m;j++){
-					for(int i=1;i<=n;i++){
-						a[i][j]+=a[i-1][j];
-					}
-				}
-				int min = Math.min(m, n);
+                if(x.compareTo(a[i+1])<0){
+                    a[i+1].multiply(ten);
+                    count.add(l);
+                }
+                else if(x.compareTo(a[i+1])==0){
+                    // get the (remaining part of the a[i] and add 1)==y to it
+                    // increase the count by its length and
+                    // add a[i+1] with y
+                    BigInteger y = new BigInteger(String.valueOf(a[i].subtract(x.multiply(ten))));
+                    
+                    String ss = y.toString();
+                    System.out.println(ss);
+                    StringBuffer o = new StringBuffer(a[i+1].toString());
+                    o = o.append(ss);
+                    a[i+1] = new BigInteger(o.toString());
+                    count.add(l);
+                    System.out.println(ss.length());
+                    System.out.println(count);
+                }
+                else {
+                    String z = ten.toString().substring(1) + "0";
+                    StringBuffer o = new StringBuffer(a[i+1].toString());
+                    o = o.append(z);
+                    a[i+1] = new BigInteger(o.toString());
+                    count.add(l);
+                }
+            }
+            System.out.println("Case #"+ tc+ ": "+ count );
 
-				for(int u=1;u<=min;u++){
-					for(int i=u;i<=n;i++){
-						for(int j=u;j<=m;j++){
-							if((a[i][j]+a[i-u][j-u]-a[i][j-u]-a[i-u][j])/(u*u)>=k){
-								res++;
-							}
-						}
-					}
-				}
-				System.out.println(res);
-
-				
-
-			}
-		}catch(Exception e){
-			return;
-		}
+        }
 	}
 
 
@@ -196,4 +206,3 @@ public class B {
 	// write 
 
 }
-

@@ -1,4 +1,4 @@
-package codeChefApril;
+package codeForces.codeforces713Div3;
 
 //   * * * fuck you * * *   //
 import java.io.BufferedReader;
@@ -9,51 +9,91 @@ import java.util.*;
 
 public class B {
 	public static void main(String[] args) {
-		try{
-			FastScanner sc = new FastScanner();
-			int t = sc.nextInt();
-			while(t-->0){
-				int n = sc.nextInt();
-				int m = sc.nextInt();
-				int k = sc.nextInt();
-				double a[][] = new double[n+1][m+1];
-				for(int i=1;i<=n;i++){
-					for(int j=1;j<=m;j++){
-						a[i][j]=sc.nextDouble();
-					}
-				}
-				long res = 0;
-				//single digit matrix handling
-				for(int i=1;i<=n;i++){
-					for(int j=1;j<=m;j++){
-						a[i][j]+=a[i][j-1];
-					}
-				}
+		FastScanner sc = new FastScanner();
+        int t = sc.nextInt();
+        while(t-->0){
+            int n = sc.nextInt();
+            // sc.nextLine();
+            StringBuffer s[] = new StringBuffer[n];
+            
+            for(int i=0;i<n;i++){
+                s[i]=new StringBuffer(sc.nextLine());
+            }
+            // char a[][] = new char[n][n];
+            int i1=0, j1 =0, i2 =0, j2=0;
+            int count =0 ;
+            // for(int i=0;i<n;i++){
+            //     for(int j=0;j<n;j++){
+            //         a[i][j]=s[i].charAt(j);
+            //         if(a[i][j]=='*'){
+            //             if(count==0){
+            //                 i1=i;
+            //                 j1=j;
+            //                 count++;
+            //             }
+            //             else{
+            //                 i2=i;
+            //                 j2=j;
+            //             }
+            //         }
+            //     }
+            // }
+            // a[i1][j2]='*';
+            // a[i2][j1]='*';
 
-				for(int j=1;j<=m;j++){
-					for(int i=1;i<=n;i++){
-						a[i][j]+=a[i-1][j];
-					}
-				}
-				int min = Math.min(m, n);
+            // for(int i=0;i<n;i++){
+            //     for(int j=0;j<n;j++){
+            //         System.out.print(a[i][j]);
+            //     }
+            //     System.out.println();
+            // }
+            for(int i=0;i<n;i++){
+                for(int j=0;j<n;j++){
+                    if(s[i].charAt(j)=='*'){
+                        if(count==0){
+                            i1=i;
+                            j1=j;
+                            count++;
+                        }
+                        else{
+                            i2=i;
+                            j2=j;
+                        }
+                    }
+                }
+            }
+            if(i1!=i2 && j1!=j2){
+            
+                s[i1].replace(j2, j2+1, "*");
+                s[i2].replace(j1, j1+1, "*");
+            }
+            else{
+                if(j1==j2){
+                    if(j1<n-1){
+                        s[i1].replace(n-1, n, "*");
+                        s[i2].replace(n-1, n, "*");
+                    }
+                    else{
+                        s[i1].replace(0, 1, "*");
+                        s[i2].replace(0, 1, "*");
+                    }
+                }
+                if(i1==i2){
+                    if(i1<n-1){
+                        s[n-1].replace(j2, j2+1, "*");
+                        s[n-1].replace(j1, j1+1, "*");
+                    }
+                    else{
+                        s[0].replace(j2, j2+1, "*");
+                        s[0].replace(j1, j1+1, "*");
+                    }
+                }
+            }
+            for(int i=0;i<n;i++){
+                System.out.println(s[i]);
+            }
 
-				for(int u=1;u<=min;u++){
-					for(int i=u;i<=n;i++){
-						for(int j=u;j<=m;j++){
-							if((a[i][j]+a[i-u][j-u]-a[i][j-u]-a[i-u][j])/(u*u)>=k){
-								res++;
-							}
-						}
-					}
-				}
-				System.out.println(res);
-
-				
-
-			}
-		}catch(Exception e){
-			return;
-		}
+        }
 	}
 
 

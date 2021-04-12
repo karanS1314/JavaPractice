@@ -13,36 +13,26 @@ public class A {
 			FastScanner sc = new FastScanner();
 			int t = sc.nextInt();
 			while(t-->0){
-				int n = sc.nextInt();
-				int rem = n%4;
-				int ans = 0;
-				ans+=n*6 + n*5;
+				long n = sc.nextLong();
+				long rem = n%4;
+				long ans = 0;
+				int a[] = new int[4];
+				a[0]=20;
+				a[1]=36;
+				a[2]=51;
+				a[3]=60;
 				if(n<=4){
-					if(rem==0){
-						ans+=4*4;
-					}
-					else if(rem==1){
-						ans+=4+3+2;
-					}
-					else if(rem==2){
-						ans+=2*(4+3+2);
-					}
-					else if(rem==3){
-						ans+=3*4;
-					}
+					ans=a[(int) (n-1)];
 				}
 				else{
 					if(rem==0){
-						ans+=4*4;
+						ans=44*(n/4);
+						ans+=16;
 					}
-					else if(rem==1){
-						ans+=3*4+4+3+2;
-					}
-					else if(rem==2){
-						ans+=2*4+2*(4+3+2);
-					}
-					else if(rem==3){
-						ans+=4*4;
+					else{
+						ans=44*(n/4);
+						ans+=4*(4-rem);
+						ans+=a[(int) (rem-1)];
 					}
 				}
 				

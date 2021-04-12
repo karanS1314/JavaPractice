@@ -1,4 +1,5 @@
-package codeChefApril;
+package codeForces.codeforces713Div3;
+
 
 //   * * * fuck you * * *   //
 import java.io.BufferedReader;
@@ -7,52 +8,44 @@ import java.io.InputStreamReader;
 import java.util.*;
  
 
-public class B {
+public class D {
 	public static void main(String[] args) {
-		try{
-			FastScanner sc = new FastScanner();
-			int t = sc.nextInt();
-			while(t-->0){
-				int n = sc.nextInt();
-				int m = sc.nextInt();
-				int k = sc.nextInt();
-				double a[][] = new double[n+1][m+1];
-				for(int i=1;i<=n;i++){
-					for(int j=1;j<=m;j++){
-						a[i][j]=sc.nextDouble();
-					}
+		FastScanner sc = new FastScanner();
+        int t = sc.nextInt();
+        while(t-->0){
+            int n = sc.nextInt();
+            int b[] = sc.readArray(n+2);
+			ruffleSort(b);
+			long sum = 0;
+			boolean f =false;
+			for(int i=0;i<n;i++){
+				sum+=b[i];
+			}
+			if(sum==b[n] || sum==b[n+1]){
+				for(int i=0;i<n;i++){
+					System.out.print(b[i] + " ");
 				}
-				long res = 0;
-				//single digit matrix handling
-				for(int i=1;i<=n;i++){
-					for(int j=1;j<=m;j++){
-						a[i][j]+=a[i][j-1];
-					}
-				}
-
-				for(int j=1;j<=m;j++){
-					for(int i=1;i<=n;i++){
-						a[i][j]+=a[i-1][j];
-					}
-				}
-				int min = Math.min(m, n);
-
-				for(int u=1;u<=min;u++){
-					for(int i=u;i<=n;i++){
-						for(int j=u;j<=m;j++){
-							if((a[i][j]+a[i-u][j-u]-a[i][j-u]-a[i-u][j])/(u*u)>=k){
-								res++;
+				f=true;
+			}
+			else{
+				for(int i=0;i<n && f==false;i++){
+					sum-=b[i];
+					sum+=b[n];
+					if(sum==b[n+1]){
+						f=true;
+						for(int j=0;j<n+1;j++){
+							if(j!=i){
+								System.out.print(b[j] + " ");
 							}
 						}
 					}
+					sum-=b[n];
+					sum+=b[i];
 				}
-				System.out.println(res);
-
-				
-
 			}
-		}catch(Exception e){
-			return;
+			if(!f)System.out.print(-1);
+
+			System.out.println();
 		}
 	}
 
@@ -196,4 +189,5 @@ public class B {
 	// write 
 
 }
+
 
