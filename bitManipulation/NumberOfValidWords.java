@@ -7,18 +7,66 @@ import java.io.InputStreamReader;
 import java.util.*;
  
 
-public class RSB {
+public class NumberOfValidWords {
 	public static void main(String[] args) {
 		FastScanner sc = new FastScanner();
-        int n = sc.nextInt();
-        // find the and of n and n''
-        int x = ~n +1 ;
-		//x can be equal to -n
+        int t = sc.nextInt();
+        while(t-->0){
+            int n = sc.nextInt();
+            String w[] = new String[n];
+            for(int i=0;i<n;i++){
+                w[i]=sc.next();
+            }
+            int m = sc.nextInt();
+            String p[] = new String[m];
+            for(int i=0;i<m;i++){
+                p[i]=sc.next();
+            }
+			HashMap<Character, ArrayList<Integer>> map = new HashMap<>();
+			for(int i=0;i<26;i++){
+				map.put((char)('a'+i), new ArrayList<>());
+			}
+			
+			for(String word : w){
+				int mask = 0;
+				for(char ch : word.toCharArray()){
+					int bit = ch -'a';
+					mask = mask | ((1 << bit));
+				}
+				HashSet<Character> set = new HashSet<>();
+				for(char ch : word.toCharArray()){
+					if(!set.contains(ch)){
+						map.get(ch).add(mask);
+						set.add(ch);
+					}
+				}
+			}
+			
+			ArrayList<Integer> res = new ArrayList<>();
+	
+			for(String puzzle : p){
+				int pmask = 0;
+				for(char ch : puzzle.toCharArray()){
+					int bit = ch -'a';
+					pmask = pmask | ((1 << bit));     
+				}
+				char fch = puzzle.charAt(0);
+				ArrayList<Integer> wtc = map.get(fch);
+				int count = 0;
+				
+				for(int wmask : wtc){
+					if((wmask & pmask) == wmask){
+						count++;
+					}
+				}
+				res.add(count);
+			}
+			for(int e : res){
+				System.out.print(e+ " ");
+			}
+			System.out.println();
 
-        int rsb = (n&x);
-        System.out.println(rsb);
-        //where rsb is the right most bit set mask
-
+        }
 	}
 
 

@@ -1,6 +1,6 @@
 package oopsRevision.generics;
 
-public class Pair<X,Y> {
+public class Pair<X,Y>{
 	X x;
 	Y y;
 	
@@ -14,3 +14,4 @@ public class Pair<X,Y> {
 	}
        
 }
+

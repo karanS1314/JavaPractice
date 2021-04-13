@@ -24,6 +24,7 @@ package codeForces.codeforces714;
         while(t-->0){
             int n = sc.nextInt();
             int a[] = sc.readArray(n);
+            
         }
      }
  
