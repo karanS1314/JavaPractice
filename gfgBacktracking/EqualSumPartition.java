@@ -18,8 +18,8 @@ public class EqualSumPartition {
 			return true;
 		}
 		
-			al.remove(al.size()-1);
-		    return partition(a, sum, n, i+1, al);
+		al.remove(al.size()-1);
+		return partition(a, sum, n, i+1, al);
 	}
 	public static void main(String[] args) {
 		
