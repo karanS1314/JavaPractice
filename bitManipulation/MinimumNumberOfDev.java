@@ -8,7 +8,7 @@ package bitManipulation;
   
 
  public class MinimumNumberOfDev {
-    static int res = 0;
+    static int res = Integer.MAX_VALUE;
     static void sub(int mask, int sm[] , int n , int k , int tar , ArrayList<Integer> al){
        if(k==n){
            if(mask == tar){
@@ -18,9 +18,9 @@ package bitManipulation;
            }
            return;
        }
-       sub(mask , sm , n , k++, tar , al);
+       sub(mask , sm , n , k+1, tar , al);
        al.add(k);
-       sub(mask | sm[k] , sm , n , k++, tar , al);
+       sub(mask | sm[k] , sm , n , k+1, tar , al);
        al.remove(al.size()-1);
 
     }

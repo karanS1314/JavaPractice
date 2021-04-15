@@ -34,13 +34,11 @@ public class LongestSubstring {
 		                
 		                map.put(c,i);
 		                
-		                for(Entry<Character,Integer> e: map.entrySet()){
-		                    if(e.getValue()>m){
-		                    	len++;
-		                    	
-		                    	
-		                    }
-		                }
+		            for(Entry<Character,Integer> e: map.entrySet()){
+		                   if(e.getValue()>m){
+		                   	len++; 	
+						   }
+		             }
 		                
 		            
 		            }

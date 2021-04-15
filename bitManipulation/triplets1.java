@@ -12,6 +12,25 @@ package bitManipulation;
         FastScanner sc = new FastScanner();
         int n = sc.nextInt();
         int a[] = sc.readArray(n);
+        HashMap<Integer, ArrayList<Integer>> map = new HashMap<>();
+        int count = 0;
+        int x = 0;
+        map.put(0, new ArrayList<>());
+        map.get(0).add(-1);
+        for(int i=0;i<n;i++){
+            x^=a[i];
+            if(map.containsKey(x)){
+                for(int e: map.get(x)){
+                    count+=(i-e)-1;
+                }
+                map.get(x).add(i);
+            }
+            else{
+                map.put(x, new ArrayList<>());
+                map.get(x).add(i);
+            }
+        }
+        System.out.println(count);
         
      }
  
